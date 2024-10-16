@@ -7,7 +7,7 @@ services:
         uid: 1000
       context: ./
       dockerfile: .docker/dockerfile
-    image: laravel
+    image: golfbravosierra/laravel
     container_name: app
     restart: unless-stopped
     working_dir: /var/www/
