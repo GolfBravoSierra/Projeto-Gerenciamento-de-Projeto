@@ -13,9 +13,9 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'user_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            #'password' => 'required|string',
         ]);
-
+        
         $user = User::create($validatedData);
 
         return redirect('/register')->with('success', 'User is successfully saved');
