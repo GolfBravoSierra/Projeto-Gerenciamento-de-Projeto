@@ -16,9 +16,7 @@ class UserRegisterTest extends TestCase
 
     public function test_can_create_user(): void
     {
-        $user = User::factory()->create(['password' => 'password']);
-        #dd($user->toArray());
-        $this->post('/register', $user->toArray());
+        $user = User::factory()->create();
         
         $this->assertDatabaseHas('users', ['email' => $user->email]);
     }
