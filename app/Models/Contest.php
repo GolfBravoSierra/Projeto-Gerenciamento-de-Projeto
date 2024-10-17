@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contest extends Model
 {
-    protected $fillable = ['title', 'description', 'mode', 'begin_date', 'end_date', 'created_by'];
+    protected $fillable = [ 'title', 
+                            'description', 
+                            'mode', 
+                            'begin_date', 
+                            'end_date', 
+                            'created_by'];
 }

@@ -9,3 +9,8 @@ Route::get('/register', function () {
 
 });
 Route::post('/register',[UserController::class, 'store']);
+
+Route::get('/criaçãodecampeonatos', function () {
+    return view('contestregister');
+
+});
