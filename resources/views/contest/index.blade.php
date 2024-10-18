@@ -12,9 +12,9 @@
         </div>
         <div class="art-form">
             @if ($contests->count()>0)
-            <div class="row row-cols-1 row-cols-md-2 g-4" style="max-width: 72rem">
+            <div>
                 @foreach ($contests as $contest)
-                <div class="col-sm-6">
+                <div>
                     <div class="card">
                     <h3 class="card-header">
                         <a href="contest/{{ $contest->id }}">{{ $contest->name }}</a>
@@ -22,17 +22,19 @@
                     <div class="card-body">
                         <p class="card-text">{{ $contest->description }}</p>
                     </div>
+                    <div class="card-foot">
+                        <a href="/contest/{{ $contest->id }}" class="card-text">Register >></a>
                     </div>
                 </div>
                 @endforeach
             </div>
-            <br>
-            <div class="pagination">{{ $contests->links() }}
-            @else
-            <p class="text center">Sem campeonatos registrados por enquanto. Volte mais tarde.</p>
-            @endif
-            @yield('curso-card')
-            </div>
+        </div>
+        <br>
+        <div class="pagination">{{ $contests->links() }}
+        @else
+        <p class="text center">Sem campeonatos registrados por enquanto. Volte mais tarde.</p>
+        @endif
+        </div>
         </div>
     </div>
 </body>

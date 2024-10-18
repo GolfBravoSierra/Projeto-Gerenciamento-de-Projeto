@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Contest extends Model
 {
@@ -12,4 +13,9 @@ class Contest extends Model
                             'begin_date', 
                             'end_date', 
                             'created_by'];
+
+    public function users()
+    {
+        return $this->belongstomany(User::class,'usercontests');
+    }
 }
