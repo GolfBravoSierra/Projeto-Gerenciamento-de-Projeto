@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('mode');
             $table->dateTime('begin_date');
             $table->dateTime('end_date');
-            $table->dateTime('created_by');
+            $table->string('created_by');
         });
     }
 

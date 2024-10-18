@@ -18,14 +18,21 @@ class ContestController extends Controller
     }
     public function store(Request $request)
     {
-        /* $validatedData = $request->validate([
-            'user_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-        ]); */
 
-        $contest = Contest::create($request);
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'mode' => 'required|string|max:255',
+            'begin_date' => 'required|date',
+            'end_date' => 'required|date',
 
-        return redirect('/register')->with('success', 'Contest is successfully saved');
+        ]); 
+
+        $validatedData['created_by'] = $validatedData['created_by'] ?? 'A';
+
+
+        $contest = Contest::create($validatedData);
+
+        return redirect('/')->with('Campeonato criado com sucesso');
     }
 }

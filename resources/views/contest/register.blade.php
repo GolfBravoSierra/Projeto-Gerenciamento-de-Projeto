@@ -10,7 +10,8 @@
         <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
             <div class="w-50">
                 <h2 class="text-center">Criação de Campeonatos</h2>
-                <form action="/action_page.php">
+                <form action="/contest/register" method="POST">
+                    @csrf
                     <div class="form-group">
                         <div class="form-floating">
                             <label for="title">Nome do Campeonato</label>
