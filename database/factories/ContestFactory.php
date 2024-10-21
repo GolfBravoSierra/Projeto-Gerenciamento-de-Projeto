@@ -19,10 +19,10 @@ class ContestFactory extends Factory
         return [
             'title' => fake()->title(),
             'description' => fake()->text(),
-            'mode' => 'individual'
+            'mode' => 'individual',
             'begin_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
             'end_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
-            'created_by' => fake()->username(),
+            'created_by' => fake()->name(),
         ];
     }
 }
