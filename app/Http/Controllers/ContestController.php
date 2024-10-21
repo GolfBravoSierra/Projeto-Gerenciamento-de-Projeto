@@ -45,7 +45,7 @@ class ContestController extends Controller
 
     public function show(Contest $contest)
     {
-        return view('contest/show',['contest' => $contest]);
+        return view('contest/show',['contest' => $contest, 'user'=>auth()]);
     }
 
     public function registerUser(Contest $contest)

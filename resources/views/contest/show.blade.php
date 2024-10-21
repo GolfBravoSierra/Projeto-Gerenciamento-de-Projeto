@@ -17,11 +17,16 @@
             Criado por: <a href="/?user={{ $contest->created_by }}#">{{ $contest->created_by }}</a>
         </div>
         <div>
-            @if($user != NULL)
-                <a href="/contest/{{ $contest->id }}">Register >></a>
-            @else
-                <a href="/login">Register >></a>
-            @endif
+            <a href="/login">Register >></a>
+        </div>
+        <br>
+        <div>
+            <h4>
+                Participantes registrados:
+            </h4>
+            <table>
+                
+            </table>
         </div>
     </div>
 </body>

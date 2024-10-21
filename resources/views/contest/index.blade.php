@@ -23,7 +23,7 @@
                         <p class="card-text">{{ $contest->description }}</p>
                     </div>
                     <div class="card-foot">
-                        <a href="/contest/{{ $contest->id }}" class="card-text">Register >></a>
+                        <a href="/contest/{{ $contest->id }}" class="card-text" style="background-color:red;color:white">Register >></a>
                     </div>
                 </div>
                 @endforeach

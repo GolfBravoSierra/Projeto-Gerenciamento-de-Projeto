@@ -22,7 +22,7 @@ class ContestFactory extends Factory
             'mode' => 'individual',
             'begin_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
             'end_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
-            'created_by' => fake()->username(),
+            'created_by' => fake()->name(),
         ];
     }
 }

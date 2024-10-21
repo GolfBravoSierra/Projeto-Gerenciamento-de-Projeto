@@ -14,5 +14,5 @@ Route::post('/register',[UserController::class, 'store']);
 
 Route::get('/contest/register', [ContestController::class, 'create']);
 Route::post('/contest/register', [ContestController::class, 'store']);
-Route::get('/contest/{contest}', [ContestController::class, 'show']);
+Route::get('/contest/{contest}', [ContestController::class, 'show'])->middleware('auth');
 Route::post('/contest/{contest}', [ContestController::class, 'registerUser']);
