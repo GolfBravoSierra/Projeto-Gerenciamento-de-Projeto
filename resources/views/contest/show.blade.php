@@ -19,7 +19,8 @@
         <div >
             Criado por: <a href="/?user={{ $contest->created_by }}#">{{ $contest->created_by }}</a>
         </div>
-        <form action="/contest/{{ $contest->id }}">
+        <form action="/contest/{{ $contest->id }}" method="post">
+            @csrf
             <input type="submit" class="btn btn-primary btn-block" value="Register>>">
         </form>
         </div>

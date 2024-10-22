@@ -50,9 +50,10 @@ class ContestController extends Controller
 
     public function registerUser(Contest $contest)
     {
+        #dd ($contest);
         UserContest::create([
             'user_id'=>Auth::user()->id,
-            'contest_id'=>$contest_id,
+            'contest_id'=>$contest->id,
         ]);
 
         return back()->with('Usuário registrado no campeonato com sucesso');

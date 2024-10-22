@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <div class="form-floating">
                             <label for="begin_date">Data de Inicio</label>
-                            <input class="form-control" type="datetime-local" id="begin_date" name="begin_date"   value="2018-06-12T19:30" min="2018-06-07T00:00" max="2018-06-14T00:00"  />
+                            <input class="form-control" type="datetime-local" id="begin_date" name="begin_date"   value="2018-06-12T19:30" min="2024-21-08T00:00" max="2040-01-01T00:00"  />
                         </div>
                     </div>
                     <div class="form-group">

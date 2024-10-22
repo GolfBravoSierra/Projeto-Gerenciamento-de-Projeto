@@ -49,6 +49,6 @@ class User extends Authenticatable
 
     public function contests()
     {
-        return $this->hasmany(Contest::class,'usercontests');
+        return $this->hasmany(Contest::class,'user_contests');
     }
 }

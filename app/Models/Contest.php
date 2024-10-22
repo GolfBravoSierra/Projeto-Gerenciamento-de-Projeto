@@ -30,7 +30,7 @@ class Contest extends Model
 
     public function users():BelongsToMany
     {
-        return $this->belongstomany(User::class,'usercontests');
+        return $this->belongstomany(User::class,'user_contests');
     }
 
     public function questions():HasMany
