@@ -10,7 +10,7 @@ Route::get('/',[ContestController::class, 'index']);
 Route::get('/register',[UserController::class, 'create']);
 Route::post('/register',[UserController::class, 'store']);
 
-Route::get('/login',[LoginController::class, 'create']);
+Route::get('/login',[LoginController::class, 'create'])->name('login');
 Route::post('/login',[LoginController::class, 'store']);
 Route::post('/logout',[LoginController::class, 'destroy']);
 Route::get('/contest/register', [ContestController::class, 'create']);

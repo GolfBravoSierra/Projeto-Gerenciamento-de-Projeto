@@ -14,8 +14,8 @@ class Authenticate
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function RedirectTo(Request $request): RedirectTo
+    public function RedirectTo(Request $request)
     {
-        return route('/login');
+        return redirect('/login');
     }
 }

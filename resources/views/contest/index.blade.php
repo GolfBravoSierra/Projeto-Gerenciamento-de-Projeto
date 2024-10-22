@@ -17,7 +17,7 @@
                 <div>
                     <div class="card">
                     <h3 class="card-header">
-                        <a href="contest/{{ $contest->id }}">{{ $contest->name }}</a>
+                        <a href="contest/{{ $contest->id }}">{{ $contest->title }}</a>
                     </h3>
                     <div class="card-body">
                         <p class="card-text">{{ $contest->description }}</p>

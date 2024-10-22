@@ -19,8 +19,9 @@
         <div >
             Criado por: <a href="/?user={{ $contest->created_by }}#">{{ $contest->created_by }}</a>
         </div>
-        <div>
-            <a href="/login">Register >></a>
+        <form action="/contest/{{ $contest->id }}">
+            <input type="submit" class="btn btn-primary btn-block" value="Register>>">
+        </form>
         </div>
         <br>
         <div>
@@ -38,6 +39,7 @@
                         <th scope="row">{{$user->id}}</th>
                         <td>{{$user->user_name}}</td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

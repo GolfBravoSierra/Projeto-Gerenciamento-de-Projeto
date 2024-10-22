@@ -35,7 +35,7 @@ class ContestController extends Controller
 
         ]); 
 
-        $validatedData['created_by'] = $validatedData['created_by'] ?? Auth::user()->name;
+        $validatedData['created_by'] = $validatedData['created_by'] ?? Auth::user()->user_name;
 
 
         $contest = Contest::create($validatedData);
