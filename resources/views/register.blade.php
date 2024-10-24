@@ -1,6 +1,6 @@
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+@extends('components.layout')
+
+@section('content')
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="w-50">
             <h2 class="text-center">Registro de Usuário</h2>
@@ -30,5 +30,4 @@
             </form>
         </div>
     </div>
-</body>
-</html>
+@endsection

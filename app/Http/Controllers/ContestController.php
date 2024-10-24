@@ -40,7 +40,7 @@ class ContestController extends Controller
 
         $contest = Contest::create($validatedData);
 
-        return redirect('/')->with('Campeonato criado com sucesso');
+        return redirect('/')->with('sucesso','Campeonato criado com sucesso');
     }
 
     public function show(Contest $contest)
@@ -56,6 +56,6 @@ class ContestController extends Controller
             'contest_id'=>$contest->id,
         ]);
 
-        return back()->with('Usuário registrado no campeonato com sucesso');
+        return back()->with('sucesso','Usuário registrado no campeonato com sucesso');
     }
 }

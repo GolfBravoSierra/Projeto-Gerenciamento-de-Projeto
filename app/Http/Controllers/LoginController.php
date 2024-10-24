@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($attributes)){
             request()->session()->regenerate();
-            return redirect('/');
+            return redirect('/')->with('sucesso', 'Usuário autenticado com sucesso');
         }
 
         return back()->withErrors([
@@ -68,6 +68,6 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return redirect('/');
+        return redirect('/')->with('sucesso', 'Usuário saiu com sucesso');
     }
 }

@@ -23,6 +23,6 @@ class UserController extends Controller
         
         $user = User::create($validatedData);
 
-        return redirect('/register')->with('success', 'User is successfully saved');
+        return redirect('/register')->with('sucesso', 'Usuário cadastrado com sucesso');
     }
 }
