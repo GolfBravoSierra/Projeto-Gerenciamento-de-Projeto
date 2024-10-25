@@ -11,27 +11,41 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 </head>
 <body>
-    <nav class="nav justify-content-space-between navbar-light bg-light">
-        <a class="nav-link active" href="/" aria-current="page"><h1>Contest-Manager</h1><span class="visually-hidden">(current)</span></a>
-        <div class="navbar nav">
-            <div class="nav-links">
-                @auth
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="triggercontest" data-bs-toggle="dropdown" aria-haspopup="true" 
-                        aria-expanded="false"><h6>Campeonatos</h6></button>
-                        <div class="dropdown-menu" aria-labelledby="triggercontest">
-                            <a class="dropdown-item" href="/contests/register">Registrar novo campeonato</a>
-                        </div>
-                    </div>
-                    <a class="nav-link active" href="/profile" aria-current="page"><h6>{{auth()->user()->user_name}}</h6></a>
-                    <form action="/logout" method="post">
-                        @csrf
-                        <button class="btn btn-primary" type="submit"><h6>Sair</h6></button>
-                    </form>
-                @else
-                    <a class="nav-link active" href="/register" aria-current="page"><h6>Register</h6></a>
-                    <a class="nav-link active" href="/login" aria-current="page"><h6>Login</h6></a>
-                @endif
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" aria-current="page">Contest-Manager</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="triggercontest" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Campeonatos
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="triggercontest">
+                                <li><a class="dropdown-item" href="/contest/register">Registrar novo campeonato</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">{{ auth()->user()->user_name }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="/logout" method="post" class="d-inline">
+                                @csrf
+                                <button class="btn btn-link nav-link" type="submit">Sair</button>
+                            </form>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register">Registrar-se</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                    @endauth
+                </ul>
             </div>
         </div>
     </nav>
@@ -42,12 +56,8 @@
         <p class="alert alert-info">{{ session()->get('sucesso') }}</p>
         </div>
     @endif
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"></script>
     @yield('content')
 </body>

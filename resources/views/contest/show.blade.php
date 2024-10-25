@@ -1,26 +1,23 @@
 @extends('components.layout')
 
 @section('content')
-    <div>
-        <h3>
-            {{$contest->name}}
-        </h3>
-    </div>
-    <div>
-        <p>{!! $contest->description !!}</p>
-        <br>
-        <div >
-            Criado por: <a href="/?user={{ $contest->created_by }}#">{{ $contest->created_by }}</a>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h3>{{ $contest->title }}</h3>
         </div>
-        <form action="/contest/{{ $contest->id }}" method="post">
-            @csrf
-            <input type="submit" class="btn btn-primary btn-block" value="Register>>">
-        </form>
+        <div class="card-body">
+            <p>{!! $contest->description !!}</p>
+            <div class="mb-3">
+                Criado por: <a href="/?user={{ $contest->created_by }}#">{{ $contest->created_by }}</a>
+            </div>
+            <form action="/contest/{{ $contest->id }}" method="post">
+                @csrf
+                <input type="submit" class="btn btn-primary btn-block" value="Register">
+            </form>
         </div>
-        <br>
-        <div>
+        <div class="card-footer">
             <table class="table">
-                <caption>Participantes registrados:</caption>
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -38,4 +35,5 @@
             </table>
         </div>
     </div>
+</div>
 @endsection
