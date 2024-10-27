@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Contest;
+use App\Models\Notification;
 
 class User extends Authenticatable
 {
@@ -50,5 +51,15 @@ class User extends Authenticatable
     public function contests()
     {
         return $this->hasmany(Contest::class,'user_contests');
+    }
+
+    public function teams()
+    {
+        return $this->hasmany(Team::class,'teams');
+    }
+
+    public function notifications()
+    {
+        return $this->hasmany(Notification::class);
     }
 }

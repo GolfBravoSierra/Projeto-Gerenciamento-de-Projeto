@@ -25,4 +25,9 @@ class UserController extends Controller
 
         return redirect('/register')->with('sucesso', 'Usuário cadastrado com sucesso');
     }
+
+    public function show()
+    {
+        return view('/show');
+    }
 }
