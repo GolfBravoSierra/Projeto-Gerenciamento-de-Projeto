@@ -28,7 +28,12 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Team::create([
+            'name'=>$request,
+            'user_id'=>Auth::user()->id,
+        ]);
+
+        return back()->with('sucesso','Usuário adicionada a equipe');
     }
 
     /**

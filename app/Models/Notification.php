@@ -14,6 +14,11 @@ class Notification extends Model
         'user_id',
     ];
 
+    public function sender()
+    {
+        return $this->hasOne(User::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

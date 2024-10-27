@@ -18,6 +18,16 @@
                             <div class="card-body">
                                 <p class="card-text">{{ $notification->description }}</p>
                             </div>
+                            <div>
+                                <form action="/notifications" method="post">
+                                    @csrf
+                                    <input type="submit" class="btn btn-primary btn-block" value="Recusar">
+                                </form>
+                                <form action="/teams/register" method="post">
+                                    @csrf
+                                    <input type="submit" class="btn btn-primary btn-block" value="Aceitar">
+                                </form>
+                            </div>
                         </div>
                     @endforeach
                 @else
