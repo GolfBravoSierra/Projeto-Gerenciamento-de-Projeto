@@ -22,12 +22,12 @@ Route::post('/contest/{contest}',[ContestController::class, 'registerUser']);
 
 Route::get('/{user}',[UserController::class, 'show']);              //Profile
 
-Route::get('/{user}/teams', [TeamController::class, 'index'])->middleware('auth');
-Route::get('/{user}/teams/register', [TeamController::class, 'create'])->middleware('auth');
-Route::post('/{user}/teams/register',[TeamController::class, 'store'])->middleware('auth');
-Route::post('/{user}/teams',[TeamController::class, 'destroy'])->middleware('auth');
+Route::get('/teams', [TeamController::class, 'index'])->middleware('auth');
+Route::get('/teams/register', [TeamController::class, 'create'])->middleware('auth');
+Route::post('/teams/register',[TeamController::class, 'store'])->middleware('auth');
+Route::post('/teams',[TeamController::class, 'destroy'])->middleware('auth');
 
-Route::get('/{user}/notifications', [NotificationController::class, 'index'])->middleware('auth');
-Route::get('/{user}/invite', [NotificationController::class, 'create'])->middleware('auth');
-Route::post('/{user}/invite',[NotificationController::class, 'store'])->middleware('auth');
-Route::post('/{user}/notifications',[NotificationController::class, 'destroy'])->middleware('auth');
+Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth');
+Route::get('/invite', [NotificationController::class, 'create'])->middleware('auth');
+Route::post('/invite',[NotificationController::class, 'store'])->middleware('auth');
+Route::post('/notifications',[NotificationController::class, 'destroy'])->middleware('auth');
