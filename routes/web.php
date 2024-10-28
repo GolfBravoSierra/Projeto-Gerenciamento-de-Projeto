@@ -20,7 +20,7 @@ Route::post('/contest/register', [ContestController::class, 'store']);
 Route::get('/contest/{contest}', [ContestController::class, 'show'])->middleware('auth');
 Route::post('/contest/{contest}',[ContestController::class, 'registerUser']);
 
-Route::get('/{user}',[UserController::class, 'show']);              //Profile
+Route::get('/profile/{user}',[UserController::class, 'show']);              //Profile
 
 Route::get('/teams', [TeamController::class, 'index'])->middleware('auth');
 Route::get('/teams/register', [TeamController::class, 'create'])->middleware('auth');

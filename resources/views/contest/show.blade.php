@@ -9,7 +9,7 @@
         <div class="card-body">
             <p>{!! $contest->description !!}</p>
             <div class="mb-3">
-                Criado por: <a href="/?user={{ $contest->created_by }}#">{{ $contest->created_by }}</a>
+                Criado por: <a href="/profile/{{ $contest->creator_id }}">{{ $contest->creator->user_name }}</a>
             </div>
             <form action="/contest/{{ $contest->id }}" method="post">
                 @csrf

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Question;
 use App\Models\User;
@@ -18,7 +19,7 @@ class Contest extends Model
                             'mode', 
                             'begin_date', 
                             'end_date', 
-                            'created_by'];
+                            'creator_id'];
 
     public function scopeFilter($query, array $filters){
         $query->when($filters['search'] ?? false, fn($query,$search)=>
@@ -26,6 +27,11 @@ class Contest extends Model
                 ->where('title','like','%'.$search.'%')
                 ->orwhere('description','like','%'.$search.'%')
         );
+    }
+
+    public function creator():BelongsTo
+    {
+        return $this->belongsTo(User::class,'creator_id');
     }
 
     public function users():BelongsToMany

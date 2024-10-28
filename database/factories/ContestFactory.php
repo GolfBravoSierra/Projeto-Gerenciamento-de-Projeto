@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Contest>
@@ -22,7 +23,7 @@ class ContestFactory extends Factory
             'mode' => 'individual',
             'begin_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
             'end_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
-            'created_by' => fake()->name(),
+            'creator_id' => User::factory()->create()->id,
         ];
     }
 }
