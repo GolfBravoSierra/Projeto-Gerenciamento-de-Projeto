@@ -13,6 +13,7 @@ class Notification extends Model
         'description',
         'user_id',
         'sender_id',
+        'team_id',
     ];
 
     public function sender()

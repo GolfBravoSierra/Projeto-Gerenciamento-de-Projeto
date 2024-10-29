@@ -24,9 +24,10 @@
                                     <input type="hidden" name="notification_id" id="notification_id" value="{{$notification->id}}">
                                     <input type="submit" class="btn btn-close btn-block">
                                 </form>
-                                <form action="/teams/register" method="post">
+                                <form action="/teams/register-user" method="post">
                                     @csrf
-                                    <input type="hidden" name="name" id="name" value="{{$notification->title}}">
+                                    <input type="hidden" name="team_id" id="team_id" value="{{$notification->team_id}}">
+                                    <input type="hidden" name="notification_id" id="notification_id" value="{{$notification->id}}">
                                     <input type="submit" class="btn btn-primary btn-block" value="Aceitar">
                                 </form>
                             </div>

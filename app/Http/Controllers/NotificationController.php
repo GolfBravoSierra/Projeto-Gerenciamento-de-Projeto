@@ -23,7 +23,8 @@ class NotificationController extends Controller
      */
     public function create()
     {
-        return view('notification/register', ['teams'=>Team::all()->where('user_id','=',Auth::user()->id),'users'=>User::all()->where('id','!=',Auth::user()->id)]);
+        $user = Auth::user();
+        return view('notification/register', ['teams'=>$user->teams,'users'=>User::all()->where('id','!=',$user->id)]);
     }
 
     /**
@@ -38,12 +39,13 @@ class NotificationController extends Controller
     
         $user = Auth::user();
         $team = Team::findOrFail($request->team_id);
-        $data['title'] = $data['title'] ?? $team->name;
-        $data['description'] = $data['description'] ?? 'Voce foi convidado para a equipe '.$team->name.' por '.$user->user_name;
-        $data['user_id'] = $data['user_id'] ?? $request->user_id;
-        $data['sender_id'] = $data['sender_id'] ?? $user->id;
-
-        $notification = Notification::create($data);
+        $notification = Notification::create([
+            'title' => $team->name,
+            'description' => 'Voce foi convidado para a equipe '.$team->name.' por '.$user->user_name,
+            'user_id' => $request->user_id,
+            'sender_id' => $user->id,
+            'team_id' => $request->team_id,
+        ]);
 
         return back()->with('sucesso','Convite enviado');
     }

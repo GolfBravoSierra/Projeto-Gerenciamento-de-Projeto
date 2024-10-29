@@ -13,6 +13,6 @@ class Team extends Model
 
     public function users()
     {
-        return $this->belongstoMany(User::class, 'team_users');
+        return $this->BelongsToMany(User::class, 'team_users');
     }
 }

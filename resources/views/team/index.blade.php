@@ -18,9 +18,9 @@
                             </div>
                             <div class="card-body">
                                 @foreach ($team->users as $user)
-                                    <p class="card-text">{{ $user->user_name }}</p>
+                                    <a href="/profile/{{$user->id}}">{{ $user->user_name }}</a>
                                 @endforeach
-                                <p class="card-text">Número de integrantes :{{ $team->users->count() }}</p>
+                                <p class="card-text">Número de integrantes : {{ $team->users->count() }}</p>
                             </div>
                             <div>
                                 <form action="/invite" method="get">

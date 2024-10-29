@@ -26,6 +26,7 @@ Route::get('/teams', [TeamController::class, 'index'])->middleware('auth');
 Route::get('/teams/register', [TeamController::class, 'create'])->middleware('auth');
 Route::post('/teams/register',[TeamController::class, 'store'])->middleware('auth');
 Route::post('/teams',[TeamController::class, 'destroy'])->middleware('auth');
+Route::post('/teams/register-user',[TeamController::class, 'registerUser'])->middleware('auth');
 
 Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth');
 Route::get('/invite', [NotificationController::class, 'create'])->middleware('auth');

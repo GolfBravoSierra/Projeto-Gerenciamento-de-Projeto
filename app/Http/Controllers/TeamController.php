@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Team;
+use App\Models\Notification;
 use App\Models\User;
+use App\Models\Team;
 use App\Models\TeamUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::all()->where('user_id','=',Auth::user()->id);
+        $teams = Auth::user()->teams;
 
         return view('team/index', ['teams' => $teams]);
     }
@@ -33,26 +34,20 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
         $validatedData = $request->validate([
             'name' => 'required|string|unique:teams|max:255',
         ]);
-        $team = Team::all()->where('name','=',$validatedData['name']);
-        if(!$team){  
-            $team = Team::create($validatedData);
-            TeamUser::create([
-                'team_id' => $team->id,
-                'user_id' => $user->id,
-            ]);
 
-            return redirect('/teams')->with('sucesso','Equipe registrada com sucesso');
-        }
+        $user = Auth::user();
+        $team = Team::create($validatedData);
         TeamUser::create([
             'team_id' => $team->id,
             'user_id' => $user->id,
         ]);
+
+        return redirect('/teams')->with('sucesso','Equipe registrada com sucesso');
+
         
-        return redirect('/teams')->with('sucesso','Usuário adicionado na equipe com sucesso');
     }
 
     /**
@@ -68,8 +63,31 @@ class TeamController extends Controller
      */
     public function destroy(Request $request)
     {
-        $team = Team::findOrFail($request->team_id);
-        $team->delete();
+        $teamUser = TeamUser::where('team_id','=',$request->team_id)->where('user_id','=',Auth::user()->id)->first();
+        $teamUser->delete();
+        if(!TeamUser::where('team_id','=',$request->team_id)->where('user_id','=',Auth::user()->id)->first()){
+            $team = Team::findOrFail($request->team_id);
+            $team->delete();
+        }
+        
         return back()->with('sucesso','Equipe deletada com sucesso');
+    }
+
+    public function registerUser(Request $request)
+    {
+        $validatedData = $request->validate([
+            'team_id'=>'required|exists:teams,id',
+            'user_id'=>'required|unique:team_users'
+        ]);
+
+        TeamUser::create([
+            'team_id' => $request->team_id,
+            'user_id' => $user->id,
+        ]);
+
+        $notification = Notification::findOrFail($request->notification_id);
+        $notification->delete();
+        
+        return back()->with('sucesso','Usuário adicionado na equipe com sucesso');
     }
 }
