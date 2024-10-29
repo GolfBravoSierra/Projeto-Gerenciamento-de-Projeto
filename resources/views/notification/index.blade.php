@@ -12,7 +12,7 @@
                         <div class="card mb-3">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    <p class="card-title">{{ $notification->title }}</p>
+                                    <p class="card-title">Convite para equipe {{ $notification->title }}</p>
                                 </h3>
                             </div>
                             <div class="card-body">
@@ -26,6 +26,7 @@
                                 </form>
                                 <form action="/teams/register" method="post">
                                     @csrf
+                                    <input type="hidden" name="name" id="name" value="{{$notification->title}}">
                                     <input type="submit" class="btn btn-primary btn-block" value="Aceitar">
                                 </form>
                             </div>

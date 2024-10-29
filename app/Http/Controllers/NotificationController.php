@@ -38,7 +38,7 @@ class NotificationController extends Controller
     
         $user = Auth::user();
         $team = Team::findOrFail($request->team_id);
-        $data['title'] = $data['title'] ?? 'Convite para equipe '.$team->name;
+        $data['title'] = $data['title'] ?? $team->name;
         $data['description'] = $data['description'] ?? 'Voce foi convidado para a equipe '.$team->name.' por '.$user->user_name;
         $data['user_id'] = $data['user_id'] ?? $request->user_id;
         $data['sender_id'] = $data['sender_id'] ?? $user->id;

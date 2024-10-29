@@ -29,11 +29,14 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $validatedData = $request->validate([
-            'name' => 'required|string|unique:teams|max:255',
+            'name' => 'required|string|max:255',
         ]);
-        $validatedData['user_id'] = $validatedData['user_id'] ?? Auth::user()->id;
-        $team = Team::create($validatedData);
+        $validatedData['user_id'] = $validatedData['user_id'] ?? $user->id;
+        if(Team::all()->where('user_id','=',$user->id)->count() < 5){
+            $team = Team::create($validatedData);
+        }
 
         return back()->with('sucesso','Usuário adicionado na equipe com sucesso');
     }
