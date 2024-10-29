@@ -17,8 +17,9 @@ Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout',[LoginController::class, 'destroy']);
 Route::get('/contest/register',  [ContestController::class, 'create']);
 Route::post('/contest/register', [ContestController::class, 'store']);
-Route::get('/contest/{contest}', [ContestController::class, 'show'])->middleware('auth');
-Route::post('/contest/{contest}',[ContestController::class, 'registerUser']);
+Route::get('/contest/{contest}', [ContestController::class, 'show']);
+Route::post('/contest/{contest}',[ContestController::class, 'registerUser'])->middleware('auth');
+Route::post('/contest/{contest}/register-team', [ContestController::class, 'registerTeam'])->middleware('auth');
 
 Route::get('/profile/{user}',[UserController::class, 'show']);              //Profile
 
