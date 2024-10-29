@@ -9,11 +9,10 @@ class Team extends Model
 {
     protected $fillable = [
         'name',
-        'user_id',
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongstoMany(User::class);
+        return $this->belongstoMany(User::class, 'team_users');
     }
 }

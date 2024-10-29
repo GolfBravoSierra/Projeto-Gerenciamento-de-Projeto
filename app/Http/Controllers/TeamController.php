@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Models\User;
+use App\Models\TeamUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +15,9 @@ class TeamController extends Controller
      */
     public function index()
     {
-        //
+        $teams = Team::all()->where('user_id','=',Auth::user()->id);
+
+        return view('team/index', ['teams' => $teams]);
     }
 
     /**
@@ -31,14 +35,24 @@ class TeamController extends Controller
     {
         $user = Auth::user();
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|unique:teams|max:255',
         ]);
-        $validatedData['user_id'] = $validatedData['user_id'] ?? $user->id;
-        if(Team::all()->where('user_id','=',$user->id)->count() < 5){
+        $team = Team::all()->where('name','=',$validatedData['name']);
+        if(!$team){  
             $team = Team::create($validatedData);
-        }
+            TeamUser::create([
+                'team_id' => $team->id,
+                'user_id' => $user->id,
+            ]);
 
-        return back()->with('sucesso','Usuário adicionado na equipe com sucesso');
+            return redirect('/teams')->with('sucesso','Equipe registrada com sucesso');
+        }
+        TeamUser::create([
+            'team_id' => $team->id,
+            'user_id' => $user->id,
+        ]);
+        
+        return redirect('/teams')->with('sucesso','Usuário adicionado na equipe com sucesso');
     }
 
     /**
@@ -52,8 +66,10 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Team $team)
+    public function destroy(Request $request)
     {
-        //
+        $team = Team::findOrFail($request->team_id);
+        $team->delete();
+        return back()->with('sucesso','Equipe deletada com sucesso');
     }
 }
