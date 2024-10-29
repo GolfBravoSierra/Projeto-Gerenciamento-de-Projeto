@@ -21,7 +21,8 @@
                             <div>
                                 <form action="/notifications" method="post">
                                     @csrf
-                                    <input type="submit" class="btn btn-primary btn-block" value="Recusar">
+                                    <input type="hidden" name="notification_id" id="notification_id" value="{{$notification->id}}">
+                                    <input type="submit" class="btn btn-close btn-block">
                                 </form>
                                 <form action="/teams/register" method="post">
                                     @csrf

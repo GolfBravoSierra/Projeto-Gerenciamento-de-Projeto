@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
@@ -20,7 +21,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        return view('team/register');
     }
 
     /**
@@ -28,12 +29,13 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        Team::create([
-            'name'=>$request,
-            'user_id'=>Auth::user()->id,
+        $validatedData = $request->validate([
+            'name' => 'required|string|unique:teams|max:255',
         ]);
+        $validatedData['user_id'] = $validatedData['user_id'] ?? Auth::user()->id;
+        $team = Team::create($validatedData);
 
-        return back()->with('sucesso','Usuário adicionada a equipe');
+        return back()->with('sucesso','Usuário adicionado na equipe com sucesso');
     }
 
     /**
