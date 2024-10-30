@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Question;
 use App\Models\User;
+use App\Models\Team;
 
 class Contest extends Model
 {
@@ -37,6 +38,11 @@ class Contest extends Model
     public function users():BelongsToMany
     {
         return $this->belongstomany(User::class,'user_contests');
+    }
+
+    public function teams():BelongsToMany
+    {
+        return $this->belongstomany(Team::class,'team_contests');
     }
 
     public function questions():HasMany

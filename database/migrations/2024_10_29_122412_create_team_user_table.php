@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contests', function (Blueprint $table) {
+        Schema::create('team_users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('team_id')->onDelete('cascade');
+            $table->foreignId('user_id')->onDelete('cascade');
             $table->timestamps();
-            $table->string('title');
-            $table->string('description');
-            $table->integer('mode');
-            $table->dateTime('begin_date');
-            $table->dateTime('end_date');
-            $table->foreignId('creator_id')->onDelete('cascade');
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contests');
+        Schema::dropIfExists('team_users');
     }
 };

@@ -20,7 +20,7 @@ class ContestFactory extends Factory
         return [
             'title' => fake()->title(),
             'description' => fake()->text(),
-            'mode' => 'individual',
+            'mode' => rand(1,4),
             'begin_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
             'end_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
             'creator_id' => User::factory()->create()->id,

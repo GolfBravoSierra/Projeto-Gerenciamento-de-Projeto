@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Contest;
 use App\Models\Notification;
+use App\Models\Team;
 
 class User extends Authenticatable
 {
@@ -55,7 +56,7 @@ class User extends Authenticatable
 
     public function teams()
     {
-        return $this->hasmany(Team::class,'teams');
+        return $this->belongsToMany(Team::class,'team_users');
     }
 
     public function notifications()
