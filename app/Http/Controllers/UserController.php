@@ -32,4 +32,10 @@ class UserController extends Controller
         
         return view('/show',['user' => $user]);
     }
+
+    public function history()
+    {
+        $user = Auth::user();
+        return view('/history',['user' => $user]);
+    }
 }
