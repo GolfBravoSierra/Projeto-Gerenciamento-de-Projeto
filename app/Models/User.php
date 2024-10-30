@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function contests()
     {
-        return $this->hasmany(Contest::class,'user_contests');
+        return $this->belongstomany(Contest::class,'user_contests');
     }
 
     public function teams()

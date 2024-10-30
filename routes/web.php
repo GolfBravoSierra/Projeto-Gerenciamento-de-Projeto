@@ -33,3 +33,5 @@ Route::get('/notifications', [NotificationController::class, 'index'])->middlewa
 Route::get('/invite', [NotificationController::class, 'create'])->middleware('auth');
 Route::post('/invite',[NotificationController::class, 'store'])->middleware('auth');
 Route::post('/notifications',[NotificationController::class, 'destroy'])->middleware('auth');
+
+Route::get('/history', [UserController::class, 'history'])->middleware('auth');

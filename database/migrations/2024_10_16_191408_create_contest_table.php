@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('mode');
             $table->dateTime('begin_date');
             $table->dateTime('end_date');
-            $table->string('created_by');
+            $table->foreignId('creator_id')->onDelete('cascade');
         });
     }
 

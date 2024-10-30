@@ -17,7 +17,7 @@
                 @endif
             </div>
             <div class="mb-3">
-                Criado por: <a href="/?user={{ $contest->created_by }}#">{{ $contest->created_by }}</a>
+                Criado por: <a href="/profile/{{ $contest->creator_id }}">{{ $contest->creator->user_name }}</a>
             </div>
             @auth
                 @if(!$contest->users->where('id', auth()->user()->id)->first())

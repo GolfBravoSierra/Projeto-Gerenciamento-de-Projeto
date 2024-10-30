@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -26,8 +27,15 @@ class UserController extends Controller
         return redirect('/register')->with('sucesso', 'Usuário cadastrado com sucesso');
     }
 
-    public function show()
+    public function show(User $user)
     {
-        return view('/show');
+        
+        return view('/show',['user' => $user]);
+    }
+
+    public function history()
+    {
+        $user = Auth::user();
+        return view('/history',['user' => $user]);
     }
 }
