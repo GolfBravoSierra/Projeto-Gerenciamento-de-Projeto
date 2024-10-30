@@ -7,8 +7,12 @@ use App\Models\User;
 
 class Team extends Model
 {
-    public function user()
+    protected $fillable = [
+        'name',
+    ];
+
+    public function users()
     {
-        return $this->belongstoMany(User::class);
+        return $this->BelongsToMany(User::class, 'team_users');
     }
 }

@@ -13,7 +13,12 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="mode">Modo</label>
-                        <input type="text" id="mode" class="form-control" name="mode">
+                        <select name="mode" id="mode">
+                            <option value="1">Individual</option>
+                            <option value="2">Dupla</option>
+                            <option value="3">Trio</option>
+                            <option value="4">Quarteto</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="begin_date">Data de Inicio</label>

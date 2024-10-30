@@ -12,7 +12,14 @@ class Notification extends Model
         'title',
         'description',
         'user_id',
+        'sender_id',
+        'team_id',
     ];
+
+    public function sender()
+    {
+        return $this->hasOne(User::class, 'id');
+    }
 
     public function user()
     {
