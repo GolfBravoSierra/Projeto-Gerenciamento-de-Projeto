@@ -4,8 +4,10 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Equipes:</h2>
-                <a href="/teams/register">criar equipe</a>
+                <h2 class="card-title">Equipes</h2>
+                <div class="d-flex justify-content-end">
+                    <a class="btn btn-primary btn-block" href="/teams/register">Criar Equipe</a>
+                </div>
             </div>
             <div class="card-body">
                 @if ($teams->count() > 0)
@@ -18,20 +20,25 @@
                             </div>
                             <div class="card-body">
                                 @foreach ($team->users as $user)
-                                    <a href="/profile/{{$user->id}}">{{ $user->user_name }}</a>
+                                    <a class="fw-semibold text-decoration-none text-dark" href="/profile/{{$user->id}}">{{ $user->user_name }}</a>
                                 @endforeach
                                 <p class="card-text">Número de integrantes : {{ $team->users->count() }}</p>
-                            </div>
-                            <div>
-                                <form action="/invite" method="get">
-                                    @csrf
-                                    <input type="submit" class="btn btn-primary btn-block" value="Convidar">
-                                </form>
-                                <form action="/teams" method="post">
-                                    @csrf
-                                    <input type="hidden" name="team_id" id="team_id" value="{{$team->id}}">
-                                    <input type="submit" class="btn btn-close btn-block">
-                                </form>
+                            
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <form action="/invite" method="get" class="me-2">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="bi bi-person-plus-fill"></i>
+                                        </button>
+                                    </form>
+                                    <form action="/teams" method="post">
+                                        @csrf
+                                        <input type="hidden" name="team_id" id="team_id" value="{{$team->id}}">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     @endforeach

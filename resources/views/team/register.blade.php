@@ -8,10 +8,12 @@
                 <form action="/teams/register" method="POST">
                     @csrf
                     <div class="form-group mb-3">
-                        <label for="name">Nome do Time</label>
+                        <label for="name" class="pb-1">Nome do Time</label>
                         <input type="text" id="name" class="form-control" name="name">
                     </div>
-                    <input type="submit" class="btn btn-primary btn-block" value="Registrar">
+                    <div class="d-flex flex-column mb-3">
+                        <input type="submit" class="btn btn-primary btn-block" value="Registrar">
+                    </div>
                 </form>
             </div>
         </div>
