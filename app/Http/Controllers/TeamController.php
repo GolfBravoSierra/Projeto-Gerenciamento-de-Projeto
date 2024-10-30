@@ -77,9 +77,10 @@ class TeamController extends Controller
     {
         $validatedData = $request->validate([
             'team_id'=>'required|exists:teams,id',
-            'user_id'=>'required|unique:team_users'
+            'notification_id'=>'required|exists:notifications, id'
         ]);
 
+        $user = Auth::user();
         TeamUser::create([
             'team_id' => $request->team_id,
             'user_id' => $user->id,
