@@ -75,9 +75,10 @@ class TeamController extends Controller
 
     public function registerUser(Request $request)
     {
+      
         $validatedData = $request->validate([
             'team_id'=>'required|exists:teams,id',
-            'notification_id'=>'required|exists:notifications, id'
+            'notification_id'=>'required|exists:notifications,id'
         ]);
 
         $user = Auth::user();

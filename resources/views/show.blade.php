@@ -15,7 +15,7 @@
                         <a class="nav-link" href="/history">Histórico de Campeonatos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ $user->id }}/notifications">Notificações</a>
+                        <a class="nav-link" href="/notifications">Notificações</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/teams">Times</a>
