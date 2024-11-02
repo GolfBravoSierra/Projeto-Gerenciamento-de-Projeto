@@ -54,21 +54,23 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Participantes</th>
+                        <th scope="col"></th>
+                        <th scope="col">Pontuação</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($contest->users as $user)
-                    <tr>
-                        <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{$user->user_name}}</td>
-                    </tr>
-                    @endforeach
-                    @foreach($contest->teams as $team)
-                    <tr>
-                        <th scope="row">{{$loop->iteration}}</th>
-                        <td>{{$team->name}}</td>
-                    </tr>
-                    @endforeach
+                    @if($users->count() > 0)
+                        @foreach($users as $user)
+                        <tr>
+                            <th scope="row">{{$loop->iteration}}</th>
+                            @if($user->team_id)
+                                <td>{{App\Models\Team::find($user->team_id)->name}}</td>
+                            @endif
+                            <td>{{App\Models\User::find($user->user_id)->user_name}}</td>
+                            <td>{{$user->points}}</td>
+                        </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

@@ -40,11 +40,6 @@ class Contest extends Model
         return $this->belongstomany(User::class,'user_contests');
     }
 
-    public function teams():BelongsToMany
-    {
-        return $this->belongstomany(Team::class,'team_contests');
-    }
-
     public function questions():HasMany
     {
         return $this->hasMany(Question::class);

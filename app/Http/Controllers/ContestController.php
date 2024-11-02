@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Contest;
+use App\Models\Team;
 use App\Models\UserContest;
-use App\Models\TeamContest;
 
 
 class ContestController extends Controller
@@ -46,12 +46,13 @@ class ContestController extends Controller
 
     public function show(Contest $contest)
     {
-        return view('contest/show',['contest' => $contest]);
+        $users = UserContest::all()->where('contest_id',$contest->id);
+        return view('contest/show',['contest' => $contest, 'users' =>$users]);
     }
 
     public function registerUser(Contest $contest)
     {
-        UserContest::create([
+        $user_contest = UserContest::create([
             'user_id'=>Auth::user()->id,
             'contest_id'=>$contest->id,
         ]);
@@ -61,10 +62,14 @@ class ContestController extends Controller
 
     public function registerTeam(Request $request, Contest $contest)
     {
-        TeamContest::create([
-            'team_id'=>$request->team_id,
-            'contest_id'=>$contest->id,
-        ]);
+        $team = Team::find($request->team_id);
+        foreach($team->users as $user){
+            $team_contest = UserContest::create([
+                'user_id'=>$user->id,
+                'contest_id'=>$contest->id,
+                'team_id'=>$request->team_id,
+            ]);
+        }
 
         return back()->with('sucesso','Equipe registrada no campeonato com sucesso');
     }

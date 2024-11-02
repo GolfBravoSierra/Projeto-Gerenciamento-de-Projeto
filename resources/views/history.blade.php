@@ -20,7 +20,10 @@
                                 <p class="card-text">Data de início: {{ $contest->begin_date }}</p>
                                 <p class="card-text">Data de término: {{ $contest->end_date }}</p>
                                 <p class="card-text">Ranking: {{ $contest->mode }}</p>
-
+                                <p class="card-text">Pontuação: {{ $user_contests->where('contest_id', $contest->id)->first()->points }}</p>
+                                @if($user_contests->where('contest_id', $contest->id)->first()->team_id)
+                                    <p class="card-text">Competiu na equipe: {{ App\Models\Team::find($user_contests->where('contest_id', $contest->id)->first()->team_id)->name }}</p>
+                                @endif
                             </div>
                         </div>
                     @endforeach

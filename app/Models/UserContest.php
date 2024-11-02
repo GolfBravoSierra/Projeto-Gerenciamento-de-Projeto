@@ -9,5 +9,7 @@ class UserContest extends Model
     protected $fillable = [
         'user_id',
         'contest_id',
+        'team_id',
+        'points',
     ];
 }
