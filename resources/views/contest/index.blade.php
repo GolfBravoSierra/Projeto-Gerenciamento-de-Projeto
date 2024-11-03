@@ -17,7 +17,14 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">{{ $contest->description }}</p>
-                                <a class="btn btn-primary btn-block" href="contest/{{ $contest->id }}">Participar</a>
+                                <p class="card-text">Duração: {{ $contest->duration() }} horas</p>
+                                @if($contest->status() > 1)
+                                    <a class="btn btn-primary btn-block" href="contest/{{ $contest->id }}">Participar</a>
+                                @elseif($contest->status() == 1)
+                                    <p class="card-text">O campeonato está em andamento. <a href="contest/{{ $contest->id }}">Acompanhar</a></p>
+                                @else
+                                    <p class="card-text">Campeonato acabado.</p>
+                                @endif
                             </div>
                         </div>
                     @endforeach
