@@ -1,6 +1,7 @@
+@extends('components.contestnav')
 @extends('components.layout')
 
-@section('content')
+@section('contestnav')
 <div class="container mt-5">
     <div class="card">
         <div class="card-header">
@@ -59,8 +60,6 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Participantes</th>
-                        <th scope="col"></th>
-                        <th scope="col">Pontuação</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,9 +69,9 @@
                             <th scope="row">{{$loop->iteration}}</th>
                             @if($user->team_id)
                                 <td>{{App\Models\Team::find($user->team_id)->name}}</td>
+                            @else
+                                <td>{{App\Models\User::find($user->user_id)->user_name}}</td>
                             @endif
-                            <td>{{App\Models\User::find($user->user_id)->user_name}}</td>
-                            <td>{{$user->points}}</td>
                         </tr>
                         @endforeach
                     @endif

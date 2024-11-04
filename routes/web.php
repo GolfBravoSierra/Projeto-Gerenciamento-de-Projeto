@@ -20,6 +20,7 @@ Route::post('/contest/register', [ContestController::class, 'store']);
 Route::get('/contest/{contest}', [ContestController::class, 'show']);
 Route::post('/contest/{contest}',[ContestController::class, 'registerUser'])->middleware('auth');
 Route::post('/contest/{contest}/register-team', [ContestController::class, 'registerTeam'])->middleware('auth');
+Route::get('/contest/{contest}/standings',[ContestController::class, 'standings']);
 
 Route::get('/profile/{user}',[UserController::class, 'show']);              //Profile
 
@@ -35,3 +36,4 @@ Route::post('/invite',[NotificationController::class, 'store'])->middleware('aut
 Route::post('/notifications',[NotificationController::class, 'destroy'])->middleware('auth');
 
 Route::get('/history', [UserController::class, 'history'])->middleware('auth');
+
