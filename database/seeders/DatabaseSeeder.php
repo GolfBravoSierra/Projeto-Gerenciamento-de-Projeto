@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Contest;
+use App\Models\Question;
+use App\Models\Option;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -29,6 +31,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
-        Contest::factory(5)->create();
+        $contests = Contest::factory(5)->create();
+
+        $question = Question::factory()->create(['contest_id'=>$contests[0]->id]);
+        Option::factory()->create(['question_id' => $question->id]);
     }
 }

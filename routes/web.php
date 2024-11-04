@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QuestionController;
 
 Route::get('/',[ContestController::class, 'index']);
 
@@ -35,3 +36,6 @@ Route::post('/invite',[NotificationController::class, 'store'])->middleware('aut
 Route::post('/notifications',[NotificationController::class, 'destroy'])->middleware('auth');
 
 Route::get('/history', [UserController::class, 'history'])->middleware('auth');
+
+Route::get('/question/{question}', [QuestionController::class, 'show']);
+Route::post('/question/{question}', [QuestionController::class, 'submit']);

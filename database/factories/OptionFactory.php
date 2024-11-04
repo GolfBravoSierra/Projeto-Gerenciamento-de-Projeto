@@ -3,12 +3,11 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Option;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Question>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Option>
  */
-class QuestionFactory extends Factory
+class OptionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +17,8 @@ class QuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            'question_text' => fake()->text(),
-            'correct_answer' => rand(1,4),
-            //'answer' => -1,
+            'text' => fake()->text(),
+            'value' => rand(1,5),
         ];
     }
 }
