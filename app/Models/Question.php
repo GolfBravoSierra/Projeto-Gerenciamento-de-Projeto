@@ -15,7 +15,7 @@ class Question extends Model
     protected $fillable = [
         'question_text',
         'correct_answer',
-        'answer'
+        'contest_id',
     ];
 
     public function status()

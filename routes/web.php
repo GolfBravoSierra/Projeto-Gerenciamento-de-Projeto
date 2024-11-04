@@ -37,5 +37,7 @@ Route::post('/notifications',[NotificationController::class, 'destroy'])->middle
 
 Route::get('/history', [UserController::class, 'history'])->middleware('auth');
 
+Route::get('/question/register', [QuestionController::class, 'create'])->middleware('auth');
+Route::post('/question/register', [QuestionController::class, 'store'])->middleware('auth');
 Route::get('/question/{question}', [QuestionController::class, 'show']);
 Route::post('/question/{question}', [QuestionController::class, 'submit']);
