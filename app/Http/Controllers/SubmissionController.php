@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Submission;
+use App\Models\UserContest;
+use App\Models\Team;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
@@ -20,38 +23,39 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-        $status = status($validatedData->answer);
-        $usercontest = UserContest::where('contest_id',$submission->question->contest->id)->where('user_id',$validatedData->user_id)->find();
-
         $validatedData = $request->validate([
-            'answer' <= 'required|integer',
-            'question_id' <= 'required|exists:questions,id',
-            'user_id' <= 'required|exists:users,id',
+            'answer' => 'required|integer',
+            'question_id' => 'required|exists:questions,id',
+            'user_id' => 'required|exists:users,id',
         ]);
+        $status = Submission::status($request->question_id, $request->answer);
+        $question = Question::find($request->question_id);
+        $usercontest = UserContest::all()->where('contest_id',$question->contest->id)->where('user_id',$request->user_id)->first();
         
         if(!$usercontest->team_id)
         {
             $submission = Submission::create([
-                'answer' <= $validatedData->answer,
-                'question-id' <= $validatedData->question_id,
-                'user_id' <= $validatedData->user_id,
-                'status' <= $status,
+                'answer' => $request->answer,
+                'question_id' => $request->question_id,
+                'user_id' => $request->user_id,
+                'status' => $status,
             ]);
             if($status == true)
             {
                 $usercontest->points += $submission->question->points;
+                $usercontest->save();
             }
-            return back()->with('sucesso', 'Questão submetida')
+            return back()->with('sucesso', 'Questão submetida');
         }
 
         $team = Team::find($usercontest->team_id);
         foreach($team->users as $user)
         {
             $submission = Submission::create([
-                'answer' <= $validatedData->answer,
-                'question-id' <= $validatedData->question_id,
-                'user_id' <= $user->id,
-                'status' <= $status,
+                'answer' => $request->answer,
+                'question_id' => $request->question_id,
+                'user_id' => $user->id,
+                'status' => $status,
             ]);
             if($status == true)
             {

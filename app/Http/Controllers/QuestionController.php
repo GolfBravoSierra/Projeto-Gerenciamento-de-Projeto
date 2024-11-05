@@ -23,9 +23,10 @@ class QuestionController extends Controller
     {
         //dd($request->all());
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255'
+            'name' => 'required|string|max:255',
             'question_text' => 'required|string|max:1000',
             'correct_answer' => 'required|integer',
+            'points' => 'required|integer',
             'contest_id' => 'required|exists:contests,id',
         ]); 
 
@@ -56,7 +57,7 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         $totalQuestion = Question::where('contest_id', $question->contest->id)->count();
-        $currentQuestionNumber = Question::where('contest_id', $question->contest->id)->where('id', '<=', $id)->count();
+        $currentQuestionNumber = Question::where('contest_id', $question->contest->id)->where('id', '<=', $question->id)->count();
 
         return view('question.show', compact('question', 'totalQuestion', 'currentQuestionNumber'));
     }

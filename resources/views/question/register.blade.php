@@ -30,6 +30,10 @@
                             @endfor
                         </select>
                     <div class="form-group mb-3">
+                        <label for="points">Valor em Pontos da Questão</label>
+                        <textarea class="form-control" id="points" name="points" rows="4" cols="50"></textarea>
+                    </div>
+                    <div class="form-group mb-3">
                         <label for="contest_id">Campeonato</label>
                         <select name="contest_id" id="contest_id">
                             @foreach($contests as $contest)

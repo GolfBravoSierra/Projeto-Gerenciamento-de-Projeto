@@ -25,9 +25,9 @@ class Submission extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function status($answer)
+    public static function status($question_id, $answer)
     {
-        if($this->question->correct_answer != $this->answer)
+        if(Question::find($question_id)->correct_answer != $answer)
         {
             return false;
         }

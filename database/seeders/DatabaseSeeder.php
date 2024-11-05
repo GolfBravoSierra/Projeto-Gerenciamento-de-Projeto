@@ -30,16 +30,16 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        Contest::factory()->create([
+        $contest = Contest::factory()->create([
             'creator_id' => 1,
             'title' => 'Test Contest',
             'description' => 'This is a test contest',
         ]);
 
         User::factory(10)->create();
-        $contests = Contest::factory(5)->create();
+        Contest::factory(5)->create();
 
-        $question = Question::factory()->create(['contest_id'=>$contests[0]->id]);
-        Option::factory()->create(['question_id' => $question->id]);
+        $question = Question::factory()->create(['contest_id'=>$contest->id, 'correct_answer' => 1]);
+        Option::factory()->create(['question_id' => $question->id, 'value' => 1]);
     }
 }

@@ -18,9 +18,10 @@ class QuestionFactory extends Factory
     public function definition(): array
     {
         return [
+            'name' => fake()->word(),
             'question_text' => fake()->text(),
             'correct_answer' => rand(1,4),
-            //'answer' => -1,
+            'points'=> rand(100, 1000),
         ];
     }
 }

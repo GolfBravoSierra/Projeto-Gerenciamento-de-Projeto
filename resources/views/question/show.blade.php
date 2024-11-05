@@ -28,10 +28,10 @@
                     <div class="mb-8">
                         <h3 class="text-2xl font-bold text-gray-900">{{ $question->question_text }}</h2>
                     </div>
-                        <!-- Formulário da Questão -->
-                        <form action="/submit" method="POST">
-                            @csrf
-                            <input type="hidden" name="question_id" value="{{ $question->id }}">
+                    <!-- Formulário da Questão -->
+                    <form action="/submit" method="POST">
+                        @csrf
+                        <input type="hidden" name="question_id" value="{{ $question->id }}">
 
                         <!-- Opções de Resposta -->
                         <div class="space-y-4">
@@ -39,10 +39,10 @@
                             <div class="flex items-center p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
                                 <input type="radio" 
                                     name="answer" 
-                                    value="{{ $index }}"
-                                    id="option_{{ $index }}"
+                                    value="{{ $index+1 }}"
+                                    id="option_{{ $index+1 }}"
                                     class="h-4 w-4 text-blue-600 focus:ring-blue-500">
-                                <label for="option_{{ $index }}" 
+                                <label for="option_{{ $index+1 }}" 
                                     class="ml-3 block text-sm font-medium text-gray-700 cursor-pointer w-full">
                                     {{ $option->text }}
                                 </label>
@@ -55,7 +55,7 @@
                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                         @auth
-                            <input type="hidden" name="user_id" value="{{ auth()->user() }}">
+                            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                             <input type="submit" class="btn btn-primary btn-block" value="Enviar Resposta">
                         @endif
                     </form>
