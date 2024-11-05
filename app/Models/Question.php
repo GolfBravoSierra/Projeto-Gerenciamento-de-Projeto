@@ -13,19 +13,12 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'question_text',
         'correct_answer',
         'contest_id',
+        'points',
     ];
-
-    public function status()
-    {
-        if($this->answer == $this->correct_answer)
-        {
-            return 0;   //questão finalizada
-        }
-        return 1;       //questão NÃO finalizada
-    }
 
     public function options()
     {

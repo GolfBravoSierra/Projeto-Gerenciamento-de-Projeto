@@ -23,6 +23,7 @@ class QuestionController extends Controller
     {
         //dd($request->all());
         $validatedData = $request->validate([
+            'name' => 'required|string|max:255'
             'question_text' => 'required|string|max:1000',
             'correct_answer' => 'required|integer',
             'contest_id' => 'required|exists:contests,id',
@@ -52,36 +53,30 @@ class QuestionController extends Controller
         return redirect('/')->with('sucesso','Questão criada com sucesso');
     }
 
-    public function show($id)
+    public function show(Question $question)
     {
-        $question = Question::find($id);
-        
-        if (!$question) {
-            abort(404);
-        }
-
-        $totalQuestion = Question::count();
-        $currentQuestionNumber = Question::where('id', '<=', $id)->count();
+        $totalQuestion = Question::where('contest_id', $question->contest->id)->count();
+        $currentQuestionNumber = Question::where('contest_id', $question->contest->id)->where('id', '<=', $id)->count();
 
         return view('question.show', compact('question', 'totalQuestion', 'currentQuestionNumber'));
     }
 
-    public function submit(Request $request)
+    public function next(Request $request)
     {
         $request->validate([
-            'answer' => 'required',
             'question_id' => 'required|exists:questions,id'
         ]);
 
-        $nextQuestion = Question::where('id', '>', $request->question_id)
-                               ->orderBy('id', 'asc')
-                               ->first();
+        $question = Question::find($request->question_id);
+        $nextQuestion = Question::where('id', '>', $question->id)
+                                ->where('contest_id', $question->contest->id)
+                                ->orderBy('id', 'asc')
+                                ->first();
 
         if ($nextQuestion) {
             return redirect('/question/'.$nextQuestion->id);
         }
 
-        $question = Question::find($request->question_id);
-        return redirect('/contest/'.$question->contest->id)->with('sucesso', 'Parabéns, você terminou o campeonato!');
+        return redirect('/contest/'.$question->contest->id.'standings')->with('sucesso', 'Parabéns, você terminou o campeonato!');
     }
 }

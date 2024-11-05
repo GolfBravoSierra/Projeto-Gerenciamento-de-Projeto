@@ -10,9 +10,10 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->text('question_text');
             $table->integer('correct_answer');
-            $table->integer('answer')->nullable();//->default();
+            $table->integer('points');
             $table->foreignId('contest_id');
             $table->timestamps();
         });

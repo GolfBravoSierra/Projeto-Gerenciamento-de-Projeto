@@ -8,7 +8,11 @@
                 <form action="/question/register" method="POST">
                     @csrf
                     <div class="form-group mb-3">
-                        <label for="question_text">Questão</label>
+                        <label for="name">Questão</label>
+                        <input type="text" class="form-control" id="name" name="name" rows="4" cols="50"></textarea>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="question_text">Texto da Questão</label>
                         <textarea class="form-control" id="question_text" name="question_text" rows="4" cols="50"></textarea>
                     </div>
                     @for($i = 1; $i < 5; $i++)
