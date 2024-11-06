@@ -9,7 +9,7 @@
             <div class="card-body">
                 @if ($user->contests->count() > 0)
                     @foreach ($user->contests as $contest)
-                        @if($contest->status == 0)
+                        @if($contest->status() == 0)
                             <div class="card mb-3">
                                 <div class="card-header">
                                     <h3 class="card-title">
@@ -27,6 +27,8 @@
                                     @endif
                                 </div>
                             </div>
+                        @else
+                            <p class="card-text">Nenhum campeonato até o momento.</p>
                         @endif
                     @endforeach
                 @else
