@@ -13,9 +13,16 @@ class SubmissionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index()  // Removido o parâmetro $user_id
     {
-        //
+        $user_id = auth()->id(); // Pega o ID do usuário logado
+        
+        $submissions = Submission::where('user_id', $user_id)
+            ->where('status', true)
+            ->with(['question.contest']) // Adicionado .contest para carregar também o relacionamento com o campeonato
+            ->get();
+
+        return view('submissions.correct', compact('submissions'));
     }
 
     /**
@@ -28,10 +35,11 @@ class SubmissionController extends Controller
             'question_id' => 'required|exists:questions,id',
             'user_id' => 'required|exists:users,id',
         ]);
+
         $status = Submission::status($request->question_id, $request->answer);
         $question = Question::find($request->question_id);
         $usercontest = UserContest::all()->where('contest_id',$question->contest->id)->where('user_id',$request->user_id)->first();
-        
+
         if(!$usercontest->team_id)
         {
             $submission = Submission::create([
@@ -40,6 +48,7 @@ class SubmissionController extends Controller
                 'user_id' => $request->user_id,
                 'status' => $status,
             ]);
+
             if($status == true)
             {
                 $usercontest->points += $submission->question->points;
@@ -57,12 +66,12 @@ class SubmissionController extends Controller
                 'user_id' => $user->id,
                 'status' => $status,
             ]);
+
             if($status == true)
             {
                 $usercontest->points += $submission->question->points;
             }
         }
-
         return back()->with('sucesso', 'Questão submetida para toda a equipe');
     }
 

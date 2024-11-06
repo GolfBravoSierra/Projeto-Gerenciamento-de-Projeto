@@ -44,3 +44,7 @@ Route::get('/question/{question}', [QuestionController::class, 'show']);
 Route::post('/question/{question}', [QuestionController::class, 'next']);
 
 Route::post('/submit', [SubmissionController::class, 'store'])->middleware('auth');
+
+Route::get('/submissions/correct', [SubmissionController::class, 'index'])
+    ->name('submissions.correct')
+    ->middleware('auth');

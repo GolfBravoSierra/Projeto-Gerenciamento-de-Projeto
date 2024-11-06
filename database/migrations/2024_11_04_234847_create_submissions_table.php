@@ -9,14 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('question_id')->constrained()->onDelete('cascade');
             $table->integer('answer');
-            $table->boolean('status');
-            $table->foreignId('user_id')->onDelete('cascade');
-            $table->foreignId('question_id')->onDelete('cascade');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
@@ -24,7 +24,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('submissions');
     }
