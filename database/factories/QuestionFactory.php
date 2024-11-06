@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Option;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Question>
@@ -17,10 +18,10 @@ class QuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->title(),
-            'development' => fake()->text(),
-            'input' => fake()->text(),
-            'output' => fake()->text(),
+            'name' => fake()->word(),
+            'question_text' => fake()->text(),
+            'correct_answer' => rand(1,4),
+            'points'=> rand(100, 1000),
         ];
     }
 }

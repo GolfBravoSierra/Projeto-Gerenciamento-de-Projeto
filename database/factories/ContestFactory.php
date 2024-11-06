@@ -21,8 +21,8 @@ class ContestFactory extends Factory
             'title' => fake()->title(),
             'description' => fake()->text(),
             'mode' => rand(1,4),
-            'begin_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
-            'end_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
+            'begin_date' => fake()->dateTimeBetween('now', '+1 week'),
+            'end_date' => fake()->dateTimeBetween('now +1 week', '+2 week'),
             'creator_id' => User::factory()->create()->id,
         ];
     }

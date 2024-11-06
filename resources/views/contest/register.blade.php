@@ -22,12 +22,12 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="begin_date">Data de Inicio</label>
-                        <input class="form-control" type="datetime-local" id="begin_date" name="begin_date"   value="2018-06-12T19:30" min="2024-21-08T00:00" max="2040-01-01T00:00"  />
+                        <input class="form-control" type="datetime-local" id="begin_date" name="begin_date"   value="{{now()}}" min="{{now()}}" max="2040-01-01T00:00"  />
                     </div>
                     <div class="form-group mb-3">
                         <label for="end_date">Data de Termino</label>
-                        <input class="form-control" type="datetime-local" id="end_date" name="end_date" value="2018-07-22" min="2018-01-01" />
-                    </div>  
+                        <input class="form-control" type="datetime-local" id="end_date" name="end_date" value="{{ now()->addHours(1) }}" min="{{ now()->addHours(1) }}" />
+                    </div>      
                     <div class="form-group mb-3">
                         <label for="description">Descrição do Campeonato</label>
                         <textarea class="form-control" id="description" name="description" rows="4" cols="50"></textarea>

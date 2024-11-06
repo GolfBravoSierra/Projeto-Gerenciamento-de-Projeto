@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Contest;
+use App\Models\Question;
+use App\Models\Option;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -28,7 +30,22 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
+        $contest = Contest::factory()->create([
+            'creator_id' => 1,
+            'title' => 'Test Contest',
+            'description' => 'This is a test contest',
+        ]);
+
         User::factory(10)->create();
         Contest::factory(5)->create();
+
+        $question = Question::factory()->create(['contest_id'=>$contest->id, 'correct_answer' => 1]);
+        Option::factory()->create(['question_id' => $question->id, 'value' => 1]);
+    Contest::all()-> where('id','!=',1) ->each(function ($contest) {
+        $questions = Question::factory(rand(5, 10))->create(['contest_id' => $contest->id]);
+        $questions->each(function ($question) {
+        Option::factory(4)->create(['question_id' => $question->id]);
+        });
+    });
     }
 }

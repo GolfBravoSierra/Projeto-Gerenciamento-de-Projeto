@@ -10,10 +10,22 @@ use App\Models\Contest;
 
 class Question extends Model
 {
-    /** @use HasFactory<\Database\Factories\QuestionFactory> */
     use HasFactory;
 
-    public function contest(): BelongsTo
+    protected $fillable = [
+        'name',
+        'question_text',
+        'correct_answer',
+        'contest_id',
+        'points',
+    ];
+
+    public function options()
+    {
+        return $this->HasMany(Option::class);
+    }
+
+    public function contest()
     {
         return $this->belongsTo(Contest::class);
     }
