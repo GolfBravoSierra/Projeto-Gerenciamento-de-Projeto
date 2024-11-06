@@ -15,14 +15,14 @@ class SubmissionController extends Controller
      */
     public function index()  // Removido o parâmetro $user_id
     {
-        $user_id = auth()->id(); // Pega o ID do usuário logado
+        $user = auth()->user(); // Pega o ID do usuário logado
         
-        $submissions = Submission::where('user_id', $user_id)
+        $submissions = Submission::where('user_id', $user->id)
             ->where('status', true)
             ->with(['question.contest']) // Adicionado .contest para carregar também o relacionamento com o campeonato
             ->get();
 
-        return view('submissions.correct', compact('submissions'));
+        return view('submissions.correct', compact('submissions', 'user'));
     }
 
     /**
@@ -70,6 +70,7 @@ class SubmissionController extends Controller
             if($status == true)
             {
                 $usercontest->points += $submission->question->points;
+                $usercontest->save();
             }
         }
         return back()->with('sucesso', 'Questão submetida para toda a equipe');

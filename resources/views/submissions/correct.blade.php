@@ -1,13 +1,34 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questões Corretas</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+@extends('components.layout')
+
+@section('content')
+    <div style="display: flex; flex-direction: column; align-items: flex-start; padding: 20px;">
+        @if(auth()->user()->id == $user->id)
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid d-flex justify-content-between">
+                <H2 class="navbar-brand">{{$user->user_name}}</H2>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/history">Histórico de Campeonatos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/notifications">Notificações</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/teams">Times</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/submissions/correct">Questões Resolvidas</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        @endif
+    </div>
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
@@ -36,8 +57,8 @@
                                     <tbody>
                                         @foreach($submissions as $submission)
                                             <tr>
-                                                <td>{{ $submission->question->title ?? 'N/A' }}</td>
-                                                <td>{{ $submission->question->contest->name ?? 'N/A' }}</td>
+                                                <td>{{ $submission->question->name ?? 'N/A' }}</td>
+                                                <td>{{ $submission->question->contest->title ?? 'N/A' }}</td>
                                                 <td>{{ $submission->question->points ?? '0' }}</td>
                                                 <td>{{ $submission->answer }}</td>
                                                 <td>{{ $submission->created_at->format('d/m/Y H:i:s') }}</td>
@@ -61,8 +82,4 @@
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection

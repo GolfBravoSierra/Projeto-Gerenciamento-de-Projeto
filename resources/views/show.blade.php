@@ -20,6 +20,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/teams">Times</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/submissions/correct">Questões Resolvidas</a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -7,6 +7,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
+                    <a class="nav-link" href="/question/{{$contest->questions[0]->id}}">Questões</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/contest/{{$contest->id}}/standings">Classificação</a>
                 </li>
             </ul>
