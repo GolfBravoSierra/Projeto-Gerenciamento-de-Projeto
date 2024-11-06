@@ -30,6 +30,29 @@ class Contest extends Model
         );
     }
 
+    public function duration()
+    {
+        $start_date = \Carbon\Carbon::parse($this->begin_date);
+        $end_date = \Carbon\Carbon::parse($this->end_date);
+        return round($start_date->diffInHours($end_date),1);
+    }
+
+    public function status()
+    {
+        $start_date = \Carbon\Carbon::parse($this->begin_date);
+        $end_date = \Carbon\Carbon::parse($this->end_date);
+        if($start_date->diffInMonths(now()) >= 1){
+            return 0;       //Closed
+        }
+        if($start_date->diffInHours(now()) < 0){
+            return 2;       //Open
+        } else if ($end_date->diffInHours(now()) < 0){
+            return 1;       //Happening
+        } else{
+            return 0;       //Closed
+        }
+    }
+
     public function creator():BelongsTo
     {
         return $this->belongsTo(User::class,'creator_id');
