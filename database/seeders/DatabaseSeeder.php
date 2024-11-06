@@ -41,5 +41,11 @@ class DatabaseSeeder extends Seeder
 
         $question = Question::factory()->create(['contest_id'=>$contest->id, 'correct_answer' => 1]);
         Option::factory()->create(['question_id' => $question->id, 'value' => 1]);
+    Contest::all()-> where('id','!=',1) ->each(function ($contest) {
+        $questions = Question::factory(rand(5, 10))->create(['contest_id' => $contest->id]);
+        $questions->each(function ($question) {
+        Option::factory(4)->create(['question_id' => $question->id]);
+        });
+    });
     }
 }

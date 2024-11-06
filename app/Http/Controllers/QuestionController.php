@@ -64,6 +64,7 @@ class QuestionController extends Controller
 
     public function next(Request $request)
     {
+
         $request->validate([
             'question_id' => 'required|exists:questions,id'
         ]);
@@ -78,6 +79,6 @@ class QuestionController extends Controller
             return redirect('/question/'.$nextQuestion->id);
         }
 
-        return redirect('/contest/'.$question->contest->id.'standings')->with('sucesso', 'Parabéns, você terminou o campeonato!');
+        return redirect('/contest/'.$question->contest->id.'/standings')->with('sucesso', 'Parabéns, você terminou o campeonato!');
     }
 }
