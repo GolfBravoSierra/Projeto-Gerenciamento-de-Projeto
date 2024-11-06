@@ -54,7 +54,7 @@
                         @endif
 
                         <div class="mt-3">
-                            <a href="{{ url()->previous() }}" class="btn btn-primary">Voltar</a>
+                            <a href="/profile/{{ auth()->id() }}" class="btn btn-primary">Voltar</a>
                         </div>
                     </div>
                 </div>
