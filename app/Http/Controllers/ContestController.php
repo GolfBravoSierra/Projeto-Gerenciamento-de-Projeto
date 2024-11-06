@@ -73,4 +73,13 @@ class ContestController extends Controller
 
         return back()->with('sucesso','Equipe registrada no campeonato com sucesso');
     }
+
+    public function standings(Contest $contest)
+    {
+        $users = UserContest::all()->where('contest_id',$contest->id);
+        
+        $users = $users->sortByDesc('points');
+        return view('contest/standings',['contest' => $contest, 'users' =>$users]);
+    } 
+
 }
