@@ -15,6 +15,20 @@ class Submission extends Model
         'question_id',
     ];
 
+    public function assignPoints(UserContest $usercontest): void
+    {
+        $first_correct = \Carbon\Carbon::parse($this->question->submissions->where('status', true)->first()->created_at);
+        if($this->status == true)
+            {
+                $usercontest->points += $this->question->points - (int)round($first_correct->diffInMinutes(now()),0);
+                if($usercontest->points < $this->question->points/10)
+                {
+                    $usercontest->points = $this->question->points/10;
+                }
+                $usercontest->save();
+            }
+    }
+
     public function question()
     {
         return $this->belongsTo(Question::class);
@@ -25,12 +39,17 @@ class Submission extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function status($question_id, $answer)
+    public function status(): void
     {
-        if(Question::find($question_id)->correct_answer != $answer)
+        if($this->question->correct_answer != $this->answer)
         {
-            return false;
+            $this->status = false;
+            $this->save();
         }
-        return true;
+        else
+        {
+            $this->status = true;
+            $this->save();
+        }   
     }
 }

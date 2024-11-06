@@ -36,7 +36,6 @@ class SubmissionController extends Controller
             'user_id' => 'required|exists:users,id',
         ]);
 
-        $status = Submission::status($request->question_id, $request->answer);
         $question = Question::find($request->question_id);
         $usercontest = UserContest::all()->where('contest_id',$question->contest->id)->where('user_id',$request->user_id)->first();
 
@@ -46,13 +45,11 @@ class SubmissionController extends Controller
                 'answer' => $request->answer,
                 'question_id' => $request->question_id,
                 'user_id' => $request->user_id,
-                'status' => $status,
             ]);
 
-            if($status == true)
-            {
-                $usercontest->points += $submission->question->points;
-                $usercontest->save();
+            $submission->status();
+            if($submission->question->contest->status() == 1){
+                $submission->assignPoints($usercontest);
             }
             return back()->with('sucesso', 'Questão submetida');
         }
@@ -64,13 +61,11 @@ class SubmissionController extends Controller
                 'answer' => $request->answer,
                 'question_id' => $request->question_id,
                 'user_id' => $user->id,
-                'status' => $status,
             ]);
-
-            if($status == true)
-            {
-                $usercontest->points += $submission->question->points;
-                $usercontest->save();
+            $submission->status();
+            $usercontest = UserContest::all()->where('contest_id',$question->contest->id)->where('user_id',$user->id)->first();
+            if($submission->question->contest->status() == 1){
+                $submission->assignPoints($usercontest);
             }
         }
         return back()->with('sucesso', 'Questão submetida para toda a equipe');

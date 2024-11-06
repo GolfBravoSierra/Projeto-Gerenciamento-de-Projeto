@@ -57,7 +57,7 @@
                                     <tbody>
                                         @foreach($submissions as $submission)
                                             <tr>
-                                                <td>{{ $submission->question->name ?? 'N/A' }}</td>
+                                            <td><a href="/question/{{$submission->question->id}}" class="text-decoration-none" text="black">{{ $submission->question->name ?? 'N/A' }}</a></td>
                                                 <td>{{ $submission->question->contest->title ?? 'N/A' }}</td>
                                                 <td>{{ $submission->question->points ?? '0' }}</td>
                                                 <td>{{ $submission->answer }}</td>

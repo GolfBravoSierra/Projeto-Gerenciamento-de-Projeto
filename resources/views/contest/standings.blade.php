@@ -15,16 +15,20 @@
                 @foreach($users as $user)
                     <tr>
                         <th scope="row">{{$loop->iteration}}</th>
-                        @if($user->team_id)
-                            <td>{{App\Models\Team::find($user->team_id)->name}}</td>
-                        @else
+                        @auth
                             @if($user->id == auth()->user()->id)
                                 <td><a class="text-decoration-none fw-bold" href="/profile/{{ auth()->user()->id }}">{{ auth()->user()->user_name }}</a></td>
                             @else
                                 <td>{{App\Models\User::find($user->user_id)->user_name}}</td>
                             @endif
+                        @else
+                            <td>{{App\Models\User::find($user->user_id)->user_name}}</td>
                         @endif
-                        <td></td>
+                        @if($user->team_id)
+                            <td>{{App\Models\Team::find($user->team_id)->name}}</td>
+                        @else
+                            <td></td>
+                        @endif
                         <td class="text-right">{{$user->points}}</td>
                     </tr>
                 @endforeach

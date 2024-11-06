@@ -25,6 +25,11 @@ class Question extends Model
         return $this->HasMany(Option::class);
     }
 
+    public function submissions()
+    {
+        return $this->HasMany(Submission::class);
+    }
+
     public function contest()
     {
         return $this->belongsTo(Contest::class);
