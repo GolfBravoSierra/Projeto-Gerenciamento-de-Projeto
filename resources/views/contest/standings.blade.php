@@ -18,7 +18,11 @@
                         @if($user->team_id)
                             <td>{{App\Models\Team::find($user->team_id)->name}}</td>
                         @else
-                            <td>{{App\Models\User::find($user->user_id)->user_name}}</td>
+                            @if($user->id == auth()->user()->id)
+                                <td><a class="text-decoration-none fw-bold" href="/profile/{{ auth()->user()->id }}">{{ auth()->user()->user_name }}</a></td>
+                            @else
+                                <td>{{App\Models\User::find($user->user_id)->user_name}}</td>
+                            @endif
                         @endif
                         <td></td>
                         <td class="text-right">{{$user->points}}</td>

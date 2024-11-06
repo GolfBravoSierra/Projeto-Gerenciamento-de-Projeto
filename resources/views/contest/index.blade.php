@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Campeonatos oferecidos:</h2>
+                <h2 class="card-title">Campeonatos oferecidos</h2>
             </div>
             <div class="card-body">
                 @if ($contests->count() > 0)

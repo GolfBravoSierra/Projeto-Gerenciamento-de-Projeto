@@ -31,6 +31,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="triggercontest">
                                 <li><a class="dropdown-item" href="/contest/register">Registrar novo campeonato</a></li>
+                                <li><a class="dropdown-item" href="/question/register">Criar nova questão</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
