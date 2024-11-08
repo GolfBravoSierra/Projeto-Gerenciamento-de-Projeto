@@ -17,6 +17,10 @@
                 @else
                     Equipes de {{$contest->mode}}
                 @endif
+                
+            </div>
+            <div class="mb-3">
+                <p>Data de início:{{$contest->begin_date}} (UTC-0)</p>
             </div>
             <div class="mb-3">
                 Criado por: <a href="/profile/{{ $contest->creator_id }}">{{ $contest->creator->user_name }}</a>

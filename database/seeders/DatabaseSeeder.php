@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'creator_id' => 1,
             'title' => 'Test Contest',
             'description' => 'This is a test contest',
-            'begin_date' => fake()->dateTimeBetween('now +5 minutes', 'now +10 minutes'),
+            'begin_date' => fake()->dateTimeBetween('now +5 minute', 'now +10 minute'),
         ]);
 
         User::factory(10)->create();
