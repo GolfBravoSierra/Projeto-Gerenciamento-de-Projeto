@@ -24,6 +24,13 @@
                         <small class="error">**{{ $message }}**</small>
                     @enderror
                 </div>
+                <div class="form-group mb-3">
+                    <label for="password_confirmation">Confirme a Senha</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                    @error('password_confirmation')
+                        <small class="error">**{{ $message }}**</small>
+                    @enderror
+                </div>
                 <button type="submit" class="btn btn-primary btn-block">Registrar</button>
             </form>
         </div>
