@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->integer('mode');
+            $table->string('award')->nullable();
             $table->dateTime('begin_date');
             $table->dateTime('end_date');
             $table->foreignId('creator_id')->onDelete('cascade');

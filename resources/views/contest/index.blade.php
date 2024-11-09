@@ -18,6 +18,7 @@
                             <div class="card-body">
                                 <p class="card-text">{{ $contest->description }}</p>
                                 <p class="card-text">Duração: {{ $contest->duration() }} horas</p>
+                                <p class="card-text">Prêmio: {{ $contest->award ?? 'Campeonato não oferece premiação' }}</p>
                                 @if($contest->status() > 1)
                                     <a class="btn btn-primary btn-block" href="contest/{{ $contest->id }}">Participar</a>
                                 @elseif($contest->status() == 1)

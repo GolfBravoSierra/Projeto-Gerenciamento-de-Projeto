@@ -10,6 +10,7 @@
         <div class="card-body">
             <p>{!! $contest->description !!}</p>
             <p class="card-text">Duração: {{ $contest->duration() }} horas</p>
+            <p class="card-text">Prêmio: {{ $contest->award ?? 'Campeonato não oferece premiação' }}</p>
             <div class="mb-3">
                 Modo do Campeonato: 
                 @if($contest->mode == 1)

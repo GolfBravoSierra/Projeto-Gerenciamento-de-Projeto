@@ -31,6 +31,7 @@ class ContestController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'mode' => 'required|integer|min:1|max:4',
+            'award' => 'nullable|string|max:80',
             'begin_date' => 'required|date',
             'end_date' => 'required|date',
 

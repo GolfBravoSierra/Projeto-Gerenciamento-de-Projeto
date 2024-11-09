@@ -18,6 +18,7 @@ class Contest extends Model
     protected $fillable = [ 'title', 
                             'description', 
                             'mode', 
+                            'award',
                             'begin_date', 
                             'end_date', 
                             'creator_id'];
