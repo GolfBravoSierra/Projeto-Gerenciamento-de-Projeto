@@ -20,9 +20,10 @@
                             <option value="4">Quarteto</option>
                         </select>
                     </div>
-                    </div><div class="form-group mb-3">
+                    <div class="form-group mb-3">
                         <label for="award">Premiação</label>
                         <input type="text" id="award" class="form-control" name="award">
+                    </div>
                     <div class="form-group mb-3">
                         <label for="begin_date">Data de Inicio</label>
                         <input class="form-control" type="datetime-local" id="begin_date" name="begin_date"   value="{{now()}}" min="{{now()}}" max="2040-01-01T00:00"  />
