@@ -43,14 +43,23 @@ class Contest extends Model
         $start_date = \Carbon\Carbon::parse($this->begin_date);
         $end_date = \Carbon\Carbon::parse($this->end_date);
         if($start_date->diffInMonths(now()) >= 1){
-            return 0;       //Closed
+            return 3;       //Closed
         }
         if($start_date->diffInHours(now()) < 0){
             return 2;       //Open
         } else if ($end_date->diffInHours(now()) < 0){
             return 1;       //Happening
         } else{
+            $this->updateWinner();
             return 0;       //Closed
+        }
+    }
+
+    protected function updateWinner()
+    {
+        $topUserContest = $this->users()->orderBy('points', 'desc')->first();
+        if ($topUserContest) {
+            $topUserContest->pivot->update(['winner' => 1]);
         }
     }
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->onDelete('cascade');
             $table->foreignId('contest_id')->onDelete('cascade');
             $table->integer('team_id')->nullable();
+            $table->integer('winner')->default(0);
             $table->integer('points')->default(0);
             $table->timestamps();
         });
