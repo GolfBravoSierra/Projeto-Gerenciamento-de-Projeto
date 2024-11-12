@@ -8,8 +8,12 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SubmissionController;
+use App\Http\Controllers\MailController;
 
 Route::get('/',[ContestController::class, 'index']);
+
+Route::get('/support', [MailController::class, 'index']);
+Route::post('/support', [MailController::class, 'send']);
 
 Route::get('/register', [UserController::class, 'create']);
 Route::post('/register',[UserController::class, 'store']);
