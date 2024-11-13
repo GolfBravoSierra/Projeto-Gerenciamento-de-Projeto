@@ -10,6 +10,7 @@ class UserContest extends Model
         'user_id',
         'contest_id',
         'team_id',
+        'winner',
         'points',
     ];
 }

@@ -22,9 +22,12 @@
                                     <p class="card-text">Duração: {{ $contest->duration() }}</p>
                                     <p class="card-text">Ranking: {{ $contest->mode }}</p>
                                     <p class="card-text">Pontuação: {{ $user_contests->where('contest_id', $contest->id)->first()->points }}</p>
+                                    @if($user_contests->where('contest_id', $contest->id)->first()->winner == 1)
+                                        <p class="card-text">Ganhador</p>
+                                    @endif
                                     @if($user_contests->where('contest_id', $contest->id)->first()->team_id)
                                         <p class="card-text">Competiu na equipe: {{ App\Models\Team::find($user_contests->where('contest_id', $contest->id)->first()->team_id)->name }}</p>
-                                    @endif
+                                    @endif                                                                                                                                                                                  
                                 </div>
                             </div>
                         @else

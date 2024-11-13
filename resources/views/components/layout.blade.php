@@ -25,6 +25,15 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="/notifications">
+                                @if(auth()->user()->notifications->isEmpty())
+                                    <i class="bi bi-envelope-fill pt-1"></i>
+                                @else
+                                    <i class="bi bi-envelope-exclamation-fill pt-1"></i>
+                                @endif
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="triggercontest" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Campeonatos
