@@ -18,7 +18,7 @@ class TeamController extends Controller
     {
         $teams = Auth::user()->teams;
 
-        return view('team/index', ['teams' => $teams]);
+        return view('team/index', ['teams' => $teams, 'user'=> auth()->user()]);
     }
 
     /**

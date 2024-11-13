@@ -22,7 +22,7 @@
                     <input type="text" class="form-control" id="subject" name="subject" required>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="message">Menssagem</label>
+                    <label for="message">Mensagem</label>
                     <textarea type="text" class="form-control" id="message" name="message" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Enviar</button>

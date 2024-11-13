@@ -1,6 +1,9 @@
+@extends('components.profilelayout')
 @extends('components.layout')
 
+
 @section('content')
+    @section('profilenav')
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
@@ -40,4 +43,5 @@
             </div>
         </div>
     </div>
+    @endsection
 @endsection

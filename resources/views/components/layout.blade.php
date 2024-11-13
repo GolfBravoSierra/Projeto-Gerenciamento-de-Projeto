@@ -60,6 +60,9 @@
                             <a class="nav-link" href="/login">Login</a>
                         </li>
                     @endauth
+                    <li class="nav-item">
+                        <a class="nav-link" href="/support">Contate-nos</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -75,4 +78,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"></script>
     @yield('content')
+    
 </body>
