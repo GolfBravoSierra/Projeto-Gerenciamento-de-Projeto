@@ -17,6 +17,10 @@ Route::post('/support', [MailController::class, 'send']);
 
 Route::get('/register', [UserController::class, 'create']);
 Route::post('/register',[UserController::class, 'store']);
+Route::get('/forgot-password',[UserController::class, 'forgotPassword']);
+Route::post('/forgot-password',[UserController::class, 'forgotPasswordEmail']);
+Route::get('/reset-password/{token}',[UserController::class, 'passwordResetForm'])->name('password.reset');
+Route::post('/reset-password',[UserController::class, 'passwordReset']);
 Route::get('/login',  [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout',[LoginController::class, 'destroy']);
@@ -50,6 +54,4 @@ Route::post('/question/{question}', [QuestionController::class, 'next']);
 
 Route::post('/submit', [SubmissionController::class, 'store'])->middleware('auth');
 
-Route::get('/submissions/correct', [SubmissionController::class, 'index'])
-    ->name('submissions.correct')
-    ->middleware('auth');
+Route::get('/submissions/correct', [SubmissionController::class, 'index'])->name('submissions.correct')->middleware('auth');
