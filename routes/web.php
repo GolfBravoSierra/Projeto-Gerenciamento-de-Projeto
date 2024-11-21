@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\MailController;
+use App\Http\Middleware\Administrator;
 
 Route::get('/',[ContestController::class, 'index']);
 
@@ -21,8 +22,8 @@ Route::get('/login',  [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 Route::post('/logout',[LoginController::class, 'destroy']);
 
-Route::get('/contest/register',  [ContestController::class, 'create']);
-Route::post('/contest/register', [ContestController::class, 'store']);
+Route::get('/contest/register',  [ContestController::class, 'create'])->middleware(Administrator::class);
+Route::post('/contest/register', [ContestController::class, 'store'])->middleware(Administrator::class);
 Route::get('/contest/{contest}', [ContestController::class, 'show']);
 Route::post('/contest/{contest}',[ContestController::class, 'registerUser'])->middleware('auth');
 Route::post('/contest/{contest}/register-team', [ContestController::class, 'registerTeam'])->middleware('auth');

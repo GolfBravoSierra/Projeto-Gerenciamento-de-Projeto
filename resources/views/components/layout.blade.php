@@ -34,15 +34,19 @@
                                 @endif
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="triggercontest" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Campeonatos
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="triggercontest">
-                                <li><a class="dropdown-item" href="/contest/register">Registrar novo campeonato</a></li>
-                                <li><a class="dropdown-item" href="/question/register">Criar nova questão</a></li>
-                            </ul>
-                        </li>
+                        @auth
+                            @if(auth()->user()->role >= 1)
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="triggercontest" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Campeonatos
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="triggercontest">
+                                        <li><a class="dropdown-item" href="/contest/register">Registrar novo campeonato</a></li>
+                                        <li><a class="dropdown-item" href="/question/register">Criar nova questão</a></li>
+                                    </ul>
+                                </li>
+                            @endif
+                        @endauth
                         <li class="nav-item">
                             <a class="nav-link" href="/profile/{{ auth()->user()->id }}">{{ auth()->user()->user_name }}</a>
                         </li>
