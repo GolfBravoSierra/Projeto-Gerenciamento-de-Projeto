@@ -41,8 +41,10 @@ class UserController extends Controller
             $requestImage->move(public_path('img/profile_pictures'), $imageName);
             
             $user->image = $imageName;
+
             $user->save();
         }
+        
 
         return redirect('/register')->with('sucesso', 'Usuário cadastrado com sucesso');
     }

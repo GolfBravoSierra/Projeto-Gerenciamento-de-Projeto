@@ -4,7 +4,15 @@
 
 @section('content')
     @section('profilenav')
-    <img src="/{{ $user->image }}">
+    <img src="/img/profile_pictures/{{ $user->image }}">
+    <form action="/register" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label for="image">Profile picture:</label>
+            <input type="file" id="image" name="image" class="from-control-file">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Alterar foto</button>
+    </form>
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
