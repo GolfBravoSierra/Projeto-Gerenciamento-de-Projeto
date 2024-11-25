@@ -4,6 +4,7 @@
 
 @section('content')
     @section('profilenav')
+    <img src="/{{ $user->image }}">
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
