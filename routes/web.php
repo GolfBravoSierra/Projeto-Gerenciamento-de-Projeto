@@ -34,6 +34,7 @@ Route::post('/contest/{contest}/register-team', [ContestController::class, 'regi
 Route::get('/contest/{contest}/standings',[ContestController::class, 'standings']);
 
 Route::get('/profile/{user}',[UserController::class, 'show']);              //Profile
+Route::post('/profile/{user}/updateImage',[UserController::class, 'updateImage']);
 
 Route::get('/teams', [TeamController::class, 'index'])->middleware('auth');
 Route::get('/teams/register', [TeamController::class, 'create'])->middleware('auth');

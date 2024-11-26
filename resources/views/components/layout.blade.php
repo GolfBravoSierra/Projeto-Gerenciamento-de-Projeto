@@ -47,6 +47,7 @@
                                 </li>
                             @endif
                         @endauth
+                        <img src="/img/profile_pictures/{{ auth()->user()->image }}">
                         <li class="nav-item">
                             <a class="nav-link" href="/profile/{{ auth()->user()->id }}">{{ auth()->user()->user_name }}</a>
                         </li>
