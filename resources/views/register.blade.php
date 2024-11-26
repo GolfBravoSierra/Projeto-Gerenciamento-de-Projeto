@@ -31,9 +31,9 @@
                         <small class="error">**{{ $message }}**</small>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label for="image">Profile picture:</label>
-                    <input type="file" id="image" name="image" class="from-control-file">
+                <div class="mb-3">
+                    <label for="image" class="form-label">Foto de perfil</label>
+                    <input type="file" id="image" name="image" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Registrar</button>
             </form>
