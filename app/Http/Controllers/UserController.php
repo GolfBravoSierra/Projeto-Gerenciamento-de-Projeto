@@ -46,7 +46,7 @@ class UserController extends Controller
         }
         
 
-        return redirect('/register')->with('sucesso', 'Usuário cadastrado com sucesso');
+        return redirect('/login')->with('sucesso', 'Usuário cadastrado com sucesso');
     }
 
     public function updateImage(Request $request)
