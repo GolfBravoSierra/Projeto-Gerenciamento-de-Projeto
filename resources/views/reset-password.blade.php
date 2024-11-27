@@ -6,14 +6,17 @@
             <h2 class="text-center mb-4">Nova Senha</h2>
             <form action="/reset-password" method="POST">
                 @csrf
-                <input type="hidden" name="token" id="token" value={{$token}}>
-                <div class="form-group mb-3">
-                    <label for="email">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                    @error('email')
-                        <small class="error">**{{ $message }}**</small>
-                    @enderror
-                </div>
+                @auth
+                @else
+                    <input type="hidden" name="token" id="token" value={{$token}}>
+                    <div class="form-group mb-3">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                        @error('email')
+                            <small class="error">**{{ $message }}**</small>
+                        @enderror
+                    </div>
+                @endif
                 <div class="form-group mb-3">
                     <label for="password">Senha</label>
                     <input type="password" class="form-control" id="password" name="password" required>

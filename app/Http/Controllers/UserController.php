@@ -72,8 +72,7 @@ class UserController extends Controller
     }
 
     public function show(User $user)
-    {
-        
+    {    
         return view('/show',['user' => $user]);
     }
 
@@ -103,28 +102,38 @@ class UserController extends Controller
     }
 
     public function passwordReset(Request $request)
-    {
-        $request->validate([
-            'token' => 'required',
-            'email' => 'required|email|exists:users,email',
-            'password' => 'required|min:8|confirmed',
-        ]);
-
-        $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
-            function (User $user, string $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password)
-                ])->setRememberToken(Str::random(60));
-     
-                $user->save();
-
-                event(new PasswordReset($user));
-            }
-        );
-        if($status === Password::PASSWORD_RESET){
-            return back()->with('sucesso', ''.__($status));
+    {   
+        if(auth()->user() != null)
+        {
+            $request->validate
+            ([
+                'password' => 'required|confirmed',
+            ]);
+            
+            auth()->user()-> password = $request->password;
+            auth()->user()-> save();
         }
-        return redirect('/login')->with('sucesso', 'Senha Alterada com sucesso');
+            $request->validate([
+                'token' => 'required',
+                'email' => 'required|email|exists:users,email',
+                'password' => 'required|confirmed',
+            ]);
+        
+            $status = Password::reset(
+                $request->only('email', 'password', 'password_confirmation', 'token'),
+                function (User $user, string $password) {
+                    $user->forceFill([
+                        'password' => Hash::make($password)
+                    ])->setRememberToken(Str::random(60));
+        
+                    $user->save();
+
+                    event(new PasswordReset($user));
+                }
+            );
+            if($status === Password::PASSWORD_RESET){
+                return back()->with('sucesso', ''.__($status));
+            }
+            return redirect('/login')->with('sucesso', 'Senha Alterada com sucesso');
     }
 }

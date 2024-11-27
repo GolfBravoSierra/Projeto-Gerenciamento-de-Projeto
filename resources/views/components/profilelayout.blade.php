@@ -26,6 +26,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/submissions/correct"><i class="bi bi-check-circle-fill"></i> Questões Resolvidas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reset-password/1"><i class="bi bi-key-fill"></i> Alterar Senha</a>
+                    </li>
                 </ul>
             </div>
         </div>
