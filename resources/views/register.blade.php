@@ -4,7 +4,7 @@
     <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="w-50">
             <h2 class="text-center mb-4">Registro de Usuário</h2>
-            <form action="/register" method="POST">
+            <form action="/register" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group mb-3">
                     <label for="user_name">Nome</label>
@@ -30,6 +30,10 @@
                     @error('password_confirmation')
                         <small class="error">**{{ $message }}**</small>
                     @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Foto de perfil</label>
+                    <input type="file" id="image" name="image" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Registrar</button>
             </form>

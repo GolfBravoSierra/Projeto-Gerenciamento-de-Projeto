@@ -25,13 +25,50 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'user_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'role' => 'required|integer',
             'password' => 'required|string|confirmed',
         ]);
-        
+
         $user = User::create($validatedData);
 
-        return redirect('/register')->with('sucesso', 'Usuário cadastrado com sucesso');
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now')) . "." . $extension;
+
+            $requestImage->move(public_path('img/profile_pictures'), $imageName);
+            
+            $user->image = $imageName;
+
+            $user->save();
+        }
+        
+
+        return redirect('/login')->with('sucesso', 'Usuário cadastrado com sucesso');
+    }
+
+    public function updateImage(Request $request)
+    {
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now')) . "." . $extension;
+
+            $requestImage->move(public_path('img/profile_pictures'), $imageName);
+            
+            $user = Auth::user();
+
+            $user->image = $imageName;
+
+            $user->save();
+        }
+
+        return back()->with('sucesso', 'Imagem alterada com sucesso');
     }
 
     public function show(User $user)
